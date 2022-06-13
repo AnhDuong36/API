@@ -1,11 +1,33 @@
 package entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Category")
 public class Category {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id")	
 	private int id ;
+	@Column(name = "Code")
 	private String code ;
+	@Column(name = "Name")
 	private String name;
+	@Column(name = "Description")
 	private String description;
+	@Column(name = "Status")
 	private boolean status;
+	@OneToMany(mappedBy = "cat")
+	private List<Product> listPro;
+	
 	public Category(int id, String code, String name, String description, boolean status) {
 		super();
 		this.id = id;

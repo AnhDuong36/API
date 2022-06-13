@@ -1,17 +1,16 @@
 package dao;
 
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.Account;
 import util.HibernateUtil;
 
-public class AccountDAOImp implements AccountDAO {
+public class AccountDAOImp implements genericDao<Account,Integer> {
 
 	@Override
-	public List<Account> getListAccount() {
+	public List<Account> selectAll() {
 		// TODO Auto-generated method stub
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -31,13 +30,13 @@ public class AccountDAOImp implements AccountDAO {
 	}
 
 	@Override
-	public Account getAccountById(Integer accId) {
+	public Account selectById(Integer id) {
 		// TODO Auto-generated method stub
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			Account a = session.get(Account.class, accId);
+			Account a = session.get(Account.class, id);
 			session.getTransaction().commit();
 			return a;
 		} catch (Exception e) {
@@ -51,12 +50,19 @@ public class AccountDAOImp implements AccountDAO {
 	}
 
 	@Override
-	public boolean insertAccount(Account acc) {
+	public List<Account> selectByName(String key) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public boolean insert(Account entity) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			session.save(acc);
+			session.save(entity);
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -70,32 +76,33 @@ public class AccountDAOImp implements AccountDAO {
 	}
 
 	@Override
-	public boolean updateAccount(Account acc) {
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		Session session = sessionFactory.openSession();
-		try {
-			session.beginTransaction();
-			session.update(acc);
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
-		return false;
-	}
-
-	@Override
-	public boolean deleteAccount(Integer accId) {
+	public boolean update(Account entity) {
 		// TODO Auto-generated method stub
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			int i = session.createQuery("delete from Account where accId = :accId").setParameter("accId", accId).executeUpdate();
+			session.update(entity);
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean remove(Integer id) {
+		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		try {
+			session.beginTransaction();
+			int i = session.createQuery("delete from Account where id = :id").setParameter("id", id).executeUpdate();
 			session.getTransaction().commit();
 			if (i > 0)
 				return true;
@@ -108,5 +115,6 @@ public class AccountDAOImp implements AccountDAO {
 		}
 		return false;
 	}
+
 
 }

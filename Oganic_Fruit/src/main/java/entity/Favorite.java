@@ -1,18 +1,38 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Favorite")
 public class Favorite {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id")
 	private int id;
-	private int productId;
-	private int accountId;
+	@ManyToOne
+	@JoinColumn(name = "ProductID", referencedColumnName = "ID")
+	private Product prod;
+//	private int productId;
+	@ManyToOne
+	@JoinColumn(name = "AccountID", referencedColumnName = "ID")
+	private Account favorite;
+//	private int accountId;
 	public Favorite() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Favorite(int id, int productId, int accountId) {
+	public Favorite(int id, Product prod, Account favorite) {
 		super();
 		this.id = id;
-		this.productId = productId;
-		this.accountId = accountId;
+		this.prod = prod;
+		this.favorite = favorite;
 	}
 	public int getId() {
 		return id;
@@ -20,21 +40,23 @@ public class Favorite {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getProductId() {
-		return productId;
+	public Product getProd() {
+		return prod;
 	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProd(Product prod) {
+		this.prod = prod;
 	}
-	public int getAccountId() {
-		return accountId;
+	public Account getFavorite() {
+		return favorite;
 	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setFavorite(Account favorite) {
+		this.favorite = favorite;
 	}
 	@Override
 	public String toString() {
-		return "Favorite [id=" + id + ", productId=" + productId + ", accountId=" + accountId + "]";
+		return "Favorite [id=" + id + ", prod=" + prod + ", favorite=" + favorite + "]";
 	}
+	
+	
 	
 }
