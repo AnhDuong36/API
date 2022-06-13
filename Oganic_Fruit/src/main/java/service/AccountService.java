@@ -26,9 +26,9 @@ public class AccountService {
 		Gson son = new Gson();
 		List<AccountDTO> listData = new ArrayList<AccountDTO>();
 		for (Account a : listAccount) {
-			AccountDTO adao = new AccountDTO(a.getId(), a.getCode(), a.getName(), a.getEmail(), a.getPhone(),
+			AccountDTO adto = new AccountDTO(a.getId(), a.getCode(), a.getName(), a.getEmail(), a.getPhone(),
 					a.getBirthday(), a.getAddress(), a.isRole(), a.isGender());
-			listData.add(adao);
+			listData.add(adto);
 		}
 		String data = son.toJson(listData);
 		return data;
