@@ -1,22 +1,51 @@
 package entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Order")
 public class Order {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id")
 	private int  id ;
+	@Column(name = "Code")
 	private String code ;
+	@Column(name = "Name")
 	private String name ;
+	@Column(name = "Email")
 	private String email ;
+	@Column(name = "Phone")
 	private String phone;
+	@Column(name = "Address")
 	private String address;
+	@Column(name = "TotalQuantity")
 	private int totalQuantity;
+	@Column(name = "TotalPrice")
 	private float totalPrice;
+	@Column(name = "Status")
 	private boolean status;
-	private int accountId;
+	@ManyToOne
+	@JoinColumn(name = "AccountID", referencedColumnName = "ID")
+	private Account order;
+	@OneToMany(mappedBy = "orderDetail")
+	private List<OrderDetail> listOrderDetail;
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Order(int id, String code, String name, String email, String phone, String address, int totalQuantity,
-			float totalPrice, boolean status, int accountId) {
+			float totalPrice, boolean status, Account order) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -27,7 +56,7 @@ public class Order {
 		this.totalQuantity = totalQuantity;
 		this.totalPrice = totalPrice;
 		this.status = status;
-		this.accountId = accountId;
+		this.order = order;
 	}
 	public int getId() {
 		return id;
@@ -83,17 +112,20 @@ public class Order {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public int getAccountId() {
-		return accountId;
+	public Account getOrder() {
+		return order;
 	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setOrder(Account order) {
+		this.order = order;
 	}
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", code=" + code + ", name=" + name + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", totalQuantity=" + totalQuantity + ", totalPrice=" + totalPrice
-				+ ", status=" + status + ", accountId=" + accountId + "]";
+				+ ", status=" + status + ", order=" + order + "]";
 	}
+	
+	
+	
 	
 }

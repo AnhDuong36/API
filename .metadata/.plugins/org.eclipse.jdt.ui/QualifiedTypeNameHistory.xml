@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="javax.ws.rs.Path"/>
     <fullyQualifiedTypeName name="javax.ws.rs.Produces"/>
     <fullyQualifiedTypeName name="javax.ws.rs.core.MediaType"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javax.ws.rs.GET"/>
     <fullyQualifiedTypeName name="entity.Account"/>
     <fullyQualifiedTypeName name="dao.AccountDAOImp"/>
@@ -26,4 +25,17 @@
     <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="javax.ws.rs.POST"/>
     <fullyQualifiedTypeName name="javax.ws.rs.Consumes"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="dao.genericDao"/>
+    <fullyQualifiedTypeName name="entity.Banner"/>
+    <fullyQualifiedTypeName name="entity.Blog"/>
+    <fullyQualifiedTypeName name="entity.Category"/>
+    <fullyQualifiedTypeName name="entity.Product"/>
+    <fullyQualifiedTypeName name="entity.Order"/>
+    <fullyQualifiedTypeName name="entity.OrderDetail"/>
+    <fullyQualifiedTypeName name="entity.Favorite"/>
+    <fullyQualifiedTypeName name="entity.Rating"/>
 </qualifiedTypeNameHistroy>

@@ -1,21 +1,44 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Rating")
 public class Rating {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id")
 	private int id;
-	private int productId;
-	private int accountId;
+	@ManyToOne
+	@JoinColumn(name = "ProductID", referencedColumnName = "ID")
+	private Product prods;
+//	private int productId;
+	@ManyToOne
+	@JoinColumn(name = "AccountID", referencedColumnName = "ID")
+	private Account rating;
+//	private int accountId;
+	@Column(name = "Star")
 	private float star;
+	@Column(name = "Description")
 	private String description;
+	@Column(name = "Status")
 	private boolean status;
 	public Rating() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Rating(int id, int productId, int accountId, float star, String description, boolean status) {
+	public Rating(int id, Product prods, Account rating, float star, String description, boolean status) {
 		super();
 		this.id = id;
-		this.productId = productId;
-		this.accountId = accountId;
+		this.prods = prods;
+		this.rating = rating;
 		this.star = star;
 		this.description = description;
 		this.status = status;
@@ -26,17 +49,17 @@ public class Rating {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getProductId() {
-		return productId;
+	public Product getProds() {
+		return prods;
 	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProds(Product prods) {
+		this.prods = prods;
 	}
-	public int getAccountId() {
-		return accountId;
+	public Account getRating() {
+		return rating;
 	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setRating(Account rating) {
+		this.rating = rating;
 	}
 	public float getStar() {
 		return star;
@@ -58,8 +81,8 @@ public class Rating {
 	}
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", productId=" + productId + ", accountId=" + accountId + ", star=" + star
-				+ ", description=" + description + ", status=" + status + "]";
+		return "Rating [id=" + id + ", prods=" + prods + ", rating=" + rating + ", star=" + star + ", description="
+				+ description + ", status=" + status + "]";
 	}
 	
 }
