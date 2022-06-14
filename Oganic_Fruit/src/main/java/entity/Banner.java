@@ -1,10 +1,26 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Banner")
 public class Banner {
+	@Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @Column(name = "ID")
 	private int id ;
+	@Column(name = "Code")
 	private String code ;
+	@Column(name = "Name")
 	private String name;
+	@Column(name = "Images")
 	private String images ;
+	@Column(name = "Status")
 	private boolean status;
 	public Banner(int id, String code, String name, String images, boolean status) {
 		super();

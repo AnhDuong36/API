@@ -1,25 +1,28 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "City")
+@Table(name = "Account")
 public class Account {
 	@Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name = "Id")
-	private int  id ;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int id;
 	@Column(name = "Code")
-	private String code ;
+	private String code;
 	@Column(name = "Name")
-	private String name ;
+	private String name;
 	@Column(name = "Email")
-	private String email ;
+	private String email;
 	@Column(name = "Phone")
 	private String phone;
 	@Column(name = "Address")
@@ -30,6 +33,13 @@ public class Account {
 	private boolean role;
 	@Column(name = "Gender")
 	private boolean gender;
+	@OneToMany(mappedBy = "account")
+	private List<Order> listOrder;
+	@OneToMany(mappedBy = "account")
+	private List<Favorite> listFavorite;
+	@OneToMany(mappedBy = "accountId")
+	private List<Rating> listRating;
+
 	public Account(int id, String code, String name, String email, String phone, String address, String birthday,
 			boolean role, boolean gender) {
 		super();
@@ -43,68 +53,88 @@ public class Account {
 		this.role = role;
 		this.gender = gender;
 	}
+
 	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getBirthday() {
 		return birthday;
 	}
+
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
+
 	public boolean isRole() {
 		return role;
 	}
+
 	public void setRole(boolean role) {
 		this.role = role;
 	}
+
 	public boolean isGender() {
 		return gender;
 	}
+
 	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", code=" + code + ", name=" + name + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", birthday=" + birthday + ", role=" + role + ", gender=" + gender + "]";
 	}
-	
+
 }

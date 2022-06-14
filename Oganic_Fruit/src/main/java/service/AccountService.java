@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -31,6 +32,7 @@ public class AccountService {
 			listData.add(adto);
 		}
 		String data = son.toJson(listData);
+		
 		return data;
 	}
 
@@ -40,10 +42,31 @@ public class AccountService {
 	public String insertAccount(String a) {
 		Gson son = new Gson();
 		AccountDTO objDTO = son.fromJson(a, AccountDTO.class);
-		Account objAccount = new Account();
-		objAccount.setId(objAccount.getId());
-
+		Account objAccount = new Account(0, objDTO.getCode(),objDTO.getName(),objDTO.getEmail(),objDTO.getPhone(),objDTO.getAddress(),objDTO.getBirthday(),objDTO.isGender(),objDTO.isRole());
+		boolean bl = new AccountDAOImp().insertAccount(objAccount);
+		String data = son.toJson(bl);
 		return data;
 	}
 
+	@POST
+	@Path("/updateAccount")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String updateAccount(String a) {
+		Gson son = new Gson();
+		AccountDTO objDTO = son.fromJson(a, AccountDTO.class);
+		Account objAccount = new Account(0, objDTO.getCode(),objDTO.getName(),objDTO.getEmail(),objDTO.getPhone(),objDTO.getAddress(),objDTO.getBirthday(),objDTO.isGender(),objDTO.isRole());
+		boolean bl = new AccountDAOImp().updateAccount(objAccount);
+		String data = son.toJson(bl);
+		return data;
+	}
+	
+	@POST
+	@Path("/deleteAccount/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String deleteAccount(@PathParam ("ID") Integer id) {
+		Gson son = new Gson();
+		boolean bl = new AccountDAOImp().deleteAccount(id);
+		String data = son.toJson(bl);
+		return data;
+	}
 }

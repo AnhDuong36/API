@@ -14,13 +14,12 @@
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>myservlet</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer
-	</servlet-class>
-	<init-param>
-		<param-name>com.sun.jersey.config.property.packages</param-name>
-		<param-value>webapi.services</param-value>
-	</init-param>
-</servlet>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>service</param-value>
+		</init-param>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>myservlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
